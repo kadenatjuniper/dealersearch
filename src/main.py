@@ -1,6 +1,7 @@
 import os
 import sys
 from findWebsite import findWebsite
+from keywordCheck import keywordCheck
 
 NAME = 1
 CITY = 3
@@ -18,4 +19,10 @@ for line in filein:
     search = splitline[NAME].replace(" ", "+").replace('(', '').replace(')', '') + "+" + splitline[CITY].replace(" ", "+") + "+" + splitline[STATE].replace(" ", "+")
     print(search)
     website = findWebsite(search)
-    fileout.write(f"{strippedline}, {website}\n")
+    if website:
+        topcon = keywordCheck(website, 'topcon')
+        sokkia = keywordCheck(website, 'sokkia')
+    else:
+        topcon = None
+        sokkia = None
+    fileout.write(f"{strippedline}, {website}, {topcon}, {sokkia}\n")

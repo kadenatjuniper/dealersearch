@@ -3,9 +3,9 @@ from bs4 import BeautifulSoup
 
 
 def findWebsite(search):
-    website = 'no website found'
+    website = None
     for i in range(10):
-        if website == 'no website found':
+        if website is None:
             URL = f"https://www.google.com/search?q={search}"
             scraper = cloudscraper.create_scraper()
             s = scraper.get(URL)
